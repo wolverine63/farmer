@@ -1,28 +1,28 @@
-// C++ program to count all distinct binary strings
-// without two consecutive 1's
 #include <iostream>
 using namespace std;
 
-int countStrings(int n)
+int countStrings(int x)
 {
-	int a[n], b[n];
-	a[0] = b[0] = 1;
-	for (int i = 1; i < n; i++)
+	int m[x], n[x];
+	m[0] = n[0] = 1;
+	int i = 1;
+	while(i < x)
 	{
-		a[i] = a[i-1] + b[i-1];
-		b[i] = a[i-1];
+		m[i] = m[i-1] + n[i-1];
+		n[i] = m[i-1];
+		i++;
 	}
-	return a[n-1] + b[n-1];
+	return m[x-1] + n[x-1];
 }
 
 int main()
 {
-    int t,n;
+    int t,x;
     cin>>t;
     while(t--)
     {
-    cin>>n;
-	cout << countStrings(n) << endl;
+    cin>>x;
+	cout << countStrings(x) << endl;
     }
 	return 0;
 }
