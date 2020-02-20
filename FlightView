@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+
+public class FlightView {
+
+    public void viewFlights(ArrayList<FlightModel> flightList)
+    {
+        System.out.println("\n \t\t *****PRIYANSHI FLIGHT BOOKING PVT. LTD *****");
+        System.out.println("FLIGHT NO|DEPARTURE LOCATION|ARRIVAL LOCATION|VALID TILL | FARE |DURATION|CLASS");
+        for(FlightModel f:flightList)
+        {
+            System.out.print(" "+f.getFlightNum());
+            System.out.print("\t |\t"+f.getDepartLoc());
+            System.out.print("\t |\t"+f.getArrivalLoc());
+            System.out.print("\t |"+f.getDate());
+            System.out.print(" | "+f.getFare());
+            System.out.print("\t|  "+f.getDuration()+"\t |");
+            System.out.println("\t|  "+f.getCLASS()+"\t |");
+    }
+    if(flightList.isEmpty())
+    {
+        System.out.println("Flights Not Available.");
+    }
+    }
+}
