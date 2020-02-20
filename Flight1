@@ -1,0 +1,44 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
+import java.util.Collections;
+
+public class Flight1 {
+    ArrayList<FlightModel> flightList=new ArrayList<>();
+    ArrayList<String> arr;
+    FlightView view=new FlightView();
+
+    public void searchFlight(String filename,String dept_loc,String arrival_loc,String date, String CLASS) throws FileNotFoundException
+    {
+        Scanner sc = new Scanner(new File(filename));
+        while(sc.hasNext()) {
+            String line = sc.nextLine().toUpperCase().toString();
+            if (!line.isEmpty()) {
+                StringTokenizer token = new StringTokenizer(line, "|");
+                arr = new ArrayList<>(line.length());
+                while (token.hasMoreTokens()) {
+                    arr.add(token.nextToken());
+                }
+                if (arr.get(1).equals(dept_loc) && arr.get(2).equals(arrival_loc) && arr.get(3).equals(date)&&arr.get(4).equals(CLASS)) {
+                    FlightModel model = new FlightModel(arr.get(0), arr.get(1), arr.get(2), arr.get(3), arr.get(4), Integer.parseInt(arr.get(5)), Float.parseFloat(arr.get(6)));
+                    flightList.add(model);
+                }
+            }
+        }
+    }
+
+    public void updateView(int choiceCode)
+    {
+        switch (choiceCode) {
+            case 1:
+                Collections.sort(flightList, (FlightModel o1, FlightModel o2) -> o1.getFare() - o2.getFare()); break;
+            case 2:
+                Collections.sort(flightList, (FlightModel o1, FlightModel o2) -> (int)( o1.getDuration() - o2.getDuration())); break;
+            default:
+                System.out.println("Wrong Choice.");
+                return;
+        }
+        view.viewFlights(flightList);
+
+    }
+}
