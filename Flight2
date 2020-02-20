@@ -1,0 +1,31 @@
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Flight2 {
+    public static void main(String args[]) throws FileNotFoundException {
+
+        Scanner sc=new Scanner(System.in);
+        String dept_loc,arrival_loc,date,CLASS;
+        int choiceCode;
+
+        System.out.print("Enter Departure Location  : ");
+        dept_loc=sc.nextLine().toUpperCase();
+        System.out.print("Enter Arrival Location  : ");
+        arrival_loc=sc.nextLine().toUpperCase();
+        System.out.print("Enter Date   : ");
+        date=sc.nextLine().toUpperCase();
+        System.out.print("Select Flight Class:   1. Buisness(Press B)\t 2. Economy(Press E)  : ");
+        CLASS=sc.nextLine().toUpperCase();
+        System.out.print("Enter Output Preference :   1. Fare \t 2. Flight Duration \nEnter Preference Choice Code : ");
+        choiceCode=sc.nextInt();
+
+        Flight1 fc=new Flight1();
+
+        fc.searchFlight("C:\\Users\\Pranav Sharma\\Documents\\NetBeansProjects\\JavaApplication2\\src\\FlightInformation\\AirIndia.csv",dept_loc,arrival_loc,date,CLASS);
+        fc.searchFlight("C:\\Users\\Pranav Sharma\\Documents\\NetBeansProjects\\JavaApplication2\\src\\FlightInformation\\JetAir.csv",dept_loc,arrival_loc,date,CLASS);
+        fc.searchFlight("C:\\Users\\Pranav Sharma\\Documents\\NetBeansProjects\\JavaApplication2\\src\\FlightInformation\\indigo.csv",dept_loc,arrival_loc,date,CLASS);
+        fc.updateView(choiceCode);
+
+    }
+
+}
